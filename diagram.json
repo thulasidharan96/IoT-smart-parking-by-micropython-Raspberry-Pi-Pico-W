@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "author": "suman rijal",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-pi-pico-w",
+      "id": "pico",
+      "top": -6.78,
+      "left": 173.17,
+      "attrs": { "cyw43": "1", "env": "micropython" }
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic1",
+      "top": -187.22,
+      "left": 196.41,
+      "attrs": { "distance": "297" }
+    },
+    {
+      "type": "wokwi-pir-motion-sensor",
+      "id": "pir1",
+      "top": -101.6,
+      "left": -26.58,
+      "attrs": {}
+    },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": 97.1, "left": 363.74, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -96.21,
+      "left": 553.55,
+      "attrs": { "color": "green" }
+    },
+    { "type": "wokwi-vcc", "id": "vcc1", "top": -88.1, "left": 508.63, "attrs": {} },
+    { "type": "wokwi-gnd", "id": "gnd1", "top": 0.06, "left": 538.79, "attrs": {} },
+    { "type": "wokwi-mpu6050", "id": "imu1", "top": 135.77, "left": -36.23, "attrs": {} },
+    { "type": "wokwi-servo", "id": "servo1", "top": 122.8, "left": 652.8, "attrs": {} }
+  ],
+  "connections": [
+    [ "ultrasonic1:TRIG", "pico:GP26", "green", [ "v184.38", "h-31.6" ] ],
+    [ "ultrasonic1:ECHO", "pico:GP27", "green", [ "v174.01", "h-41.6" ] ],
+    [ "ultrasonic1:GND", "pico:GND.6", "black", [ "v0" ] ],
+    [ "pir1:GND", "pico:GND.1", "black", [ "v37.67", "h148.71" ] ],
+    [ "pir1:VCC", "pico:3V3_EN", "red", [ "v46.65", "h231.44" ] ],
+    [ "pir1:OUT", "pico:GP0", "green", [ "v19.01", "h158.84" ] ],
+    [ "relay1:GND", "pico:GND.8", "black", [ "h-36.82", "v-62.65", "h-0.87", "v-38.18" ] ],
+    [ "relay1:VCC", "pico:3V3", "red", [ "h-45.11", "v-33.99", "h0.27", "v-37.64" ] ],
+    [ "vcc1:VCC", "relay1:COM", "red", [ "v146.77", "h-49.27" ] ],
+    [ "gnd1:GND", "led1:C", "black", [ "v-52.66", "h10.84" ] ],
+    [ "relay1:IN", "pico:GP16", "green", [ "h-43.66", "v52.76", "h-62.32", "v0.17" ] ],
+    [ "relay1:NO", "led1:A", "green", [ "h111.32", "v-155.44" ] ],
+    [ "pico:3V3_EN", "ultrasonic1:VCC", "red", [ "h0" ] ],
+    [ "imu1:SDA", "pico:GP4", "green", [ "v-88.61", "h169.85" ] ],
+    [ "imu1:SCL", "pico:GP5", "green", [ "v-77.15", "h160.25" ] ],
+    [ "imu1:GND", "pico:GND.3", "black", [ "v0" ] ],
+    [ "imu1:VCC", "pico:3V3", "red", [ "v-49.31", "h184.1", "v-35.49" ] ],
+    [ "servo1:GND", "pico:GND.8", "black", [ "h-39.82", "v-289.25", "h-158.47", "v142.05" ] ],
+    [
+      "servo1:V+",
+      "pico:VBUS",
+      "red",
+      [ "h-14.79", "v-334.5", "h-232.58", "v57.2", "h0.22", "v101.4" ]
+    ],
+    [ "servo1:PWM", "pico:GP27", "orange", [ "h-27.9", "v73.06", "h-333.85", "v-181.66" ] ]
+  ],
+  "dependencies": {}
+}
